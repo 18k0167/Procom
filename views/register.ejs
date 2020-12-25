@@ -1,0 +1,80 @@
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up</title>
+  <style>
+  .register-form {
+    width: 300px;
+    margin: 0 auto;
+    font-family: Tahoma, Geneva, sans-serif;
+  }
+  .register-form h1 {
+    text-align: center;
+    color: #4d4d4d;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+  }
+    .register-form input[name="password"]
+    {
+          width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+    }
+    .register-form input[name="phoneNumber"]
+    {
+          width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+    }
+    .register-form input[name="name"]
+    {
+          width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+    }
+  .register-form input[name="email"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+  }
+  .register-form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #38406d;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  </style>
+</head>
+<body>
+  <div class="Register-form">
+    <h1>Registration</h1>
+    <form action="/register" method="POST">
+     
+      
+              <input type="text" id="name" name="name" placeholder="Name" required >
+
+              <input type="email" id="email" name="email" required placeholder="Email">
+
+              <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+            
+              <input type="password" id = "email" name="password" placeholder="Password" required>
+              
+              <input type="submit"  value = "Register">
+              
+              <p class="Registered"><a href="/login">Already registered</p>
+              
+    </form>
+  </div>
+</body>
+

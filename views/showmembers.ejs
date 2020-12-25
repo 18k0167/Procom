@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h2{
+              color: rgb(14, 13, 13);
+              font-family: Tahoma;
+              font-weight: 800;
+              text-align: center;
+          }
+        #myInput {
+      background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 20%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid rgb(0, 0, 0); /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    .myTable {
+      border-collapse: collapse; /* Collapse borders */
+      width: 100%; /* Full-width */
+      border: 1px solid rgb(0, 0, 0); /* Add a grey border */
+      font-size: 18px; /* Increase font-size */
+    }
+
+    .myTable th, .myTable td {
+      text-align: left; /* Left-align text */
+      padding: 12px; /* Add padding */
+    }
+
+    .myTable tr {
+      /* Add a bottom border to all table rows */
+      border-bottom: 1px solid rgb(0, 0, 0);
+    }
+
+    .myTable tr.header, .myTable tr:hover {
+      /* Add a grey background color to the table header and on hover */
+      background-color: #f1f1f1;
+    }
+    .button {
+            background-color: #38406d;
+            color: rgb(255, 255, 255);
+            
+            
+          }
+          
+          .button:hover {
+            background-color: #646ea3;
+            color: white;
+          }
+    .button1{
+            
+            width: 10%;
+            
+            background-color: #38406d;
+            color: rgb(255, 255, 255);
+    }
+    .button1:hover{
+            
+          background-color: #646ea3;
+            color: white;
+          
+    }
+
+    
+</style>
+  <title>Members Data</title>
+</head>
+<body>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for member by name..">
+    <div class="table-data">
+    <h2>Members Data</h2>
+    <table class="myTable" id = "myTable">
+        <tr>
+            <th>Name</th>
+            <th>Member_Id</th>
+            <th>Phone Number</th>
+            <th>Department ID</th>
+            <th>Competition ID</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        
+        <%
+        if(MemberData.length!=0){
+        var i=1;
+        MemberData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.member_name; %></td>
+            <td><%=data.member_id %></td>
+            <td><%=data.member_phone %></td>
+            <td><%=data.dept_id %></td>
+            <td><%=data.competition_id%></td>
+            <td><a href="/admin/member/edit/<%=data.member_id%>" ><button class = "button">Update</button></a></td>
+            <td><a href="/admin/member/delete/<%=data.competition_id%>"><button class = "button">Delete</button></a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+<a href="/admin/member/add" ><button class = "button1">Add+</button></a>
+    <br>
+    <a href="/admin" ><button class = "button1">Go back</button></a>
+    </div>
+</html>
+
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>

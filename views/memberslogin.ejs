@@ -1,0 +1,59 @@
+
+	<head>
+		<meta charset="utf-8">
+		<title>Login for memebers</title>
+		<style>
+		.loginMemeber-form {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.loginMemeber-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+        .loginMemeber-form input[name="password"]
+        {
+            width: 100%;
+			padding: 15px;
+			border: 1px solid #414040;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+        }
+		.loginMemeber-form input[name="member_id"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #414040;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.loginMemeber-form input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #38406d;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		</style>
+	</head>
+    <body>
+		<div class="loginMemeber-form">
+			<h1>Login For Members</h1>
+			<form action="/memberslogin" method="POST">
+				<input type="id" id = "member_id" name="member_id" placeholder="member_id" required>
+                <input type="password" id = "passwords" name="password" placeholder="passwords" required>
+                
+                <input type="submit"  value = "Login">
+                
+                
+			</form>
+		</div>
+	</body>
+
+
+

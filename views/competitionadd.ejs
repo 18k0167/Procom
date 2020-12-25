@@ -1,0 +1,88 @@
+<head>
+    <meta charset="utf-8">
+    <title>Update Competition info</title>
+    <style>
+    .form {
+      width: 300px;
+      margin: 0 auto;
+      font-family: Tahoma, Geneva, sans-serif;
+    }
+    .form h1 {
+      text-align: center;
+      color: #4d4d4d;
+      font-size: 24px;
+      padding: 20px 0 20px 0;
+    }
+      .form input[name="name"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .form input[name="MinNumber"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .form input[name="MaxNumber"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .form input[name="Price"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .form input[name="Catagory"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+    .form input[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background-color: #38406d;
+      border: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="form">
+      <h1>Add new competition</h1>
+      <form action="/admin/competition/add" method = "POST">
+        
+        
+                <input type="text" id="name" name="name" placeholder="Name" required > 
+
+                <input type="number" id="MinNumber" name="MinNumber"  placeholder="Min number"  required>
+              
+                <input type="number" id = "MaxNumber" name="MaxNumber" placeholder="Max number ">
+
+                <input type="text" id = "Price" name="Price" placeholder="Fee"  required>
+
+                <!-- <input type="number" id = "Price" name="Price" placeholder="Catagory"> -->
+                
+                <input type="submit"  value = "Add+">
+                
+      </form>
+    </div>
+  </body>

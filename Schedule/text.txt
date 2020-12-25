@@ -1,0 +1,66 @@
+app.get('/admin/schedule', (req,res) =>
+    {
+       
+
+        res.render('adminSchedule.ejs', { temSceduleData: temSceduleData});
+        
+    }
+)
+app.get('/admin/schedule/delete/:id', (req,res) =>
+    {
+       
+
+        console.log("Delete Scedule " + req.params.id);
+        
+        
+    }
+)
+app.get('/admin/schedule/edit/:id', (req,res) =>
+    {
+       
+         var scheduleData = [{'c_id':'1','time':'2:30','place':'lab1'}];
+         scheduleData.c_id = req.params.id; 
+         scheduleData.time = '2:30';
+         scheduleData.place = 'lab1';
+        res.render('adminScheduleEditForm.ejs', { ScheduleData: scheduleData});
+        
+    }
+)
+app.post('/admin/schedule/edit/:id', (req,res) =>
+    {
+       
+        console.log("Competition ID to be scheduled:" + req.params.id );
+        console.log("Time:" + req.body.place );
+        console.log("Place:" + req.params.time );
+       
+        
+    }
+)
+app.get('/admin/schedule/add', (req,res) =>
+    {
+        var ComData = [
+            {'c_id': '1', 'c_name':'Tug of war'},
+            {'c_id': '2', 'c_name':'Fast Stock exchangeg'},
+            {'c_id': '3', 'c_name':'Speed Programming'},
+        ]
+        res.render('adminScheduleAdd.ejs', { ComData: ComData});
+        
+    }
+)
+app.get('/admin/schedule/add/:id', (req,res) =>
+    {
+
+        console.log("Competition ID to be scheduled:" + req.params.id );
+        res.render('adminScheduleAddForm.ejs', { c_id: req.params.id});
+        
+    }
+)
+app.post('/admin/schedule/add/:id', (req,res) =>
+    {
+
+        console.log("Competition ID to be scheduled:" + req.params.id );
+        console.log("Time:" + req.body.place );
+        console.log("Place:" + req.params.time );
+    }
+)
+

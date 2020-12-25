@@ -1,0 +1,114 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Edit Member Info</title>
+    <style>
+    .UpdateMemberForm {
+      width: 300px;
+      margin: 0 auto;
+      font-family: Tahoma, Geneva, sans-serif;
+    }
+    .UpdateMemberForm h1 {
+      text-align: center;
+      color: #4d4d4d;
+      font-size: 24px;
+      padding: 20px 0 20px 0;
+    }
+      .UpdateMemberForm input[name="name"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .UpdateMemberForm input[name="member_id"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .UpdateMemberForm input[name="PhoneNumber"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .UpdateMemberForm input[name="dept_name"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 10px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+      .UpdateMemberForm input[name="competitionID"]
+      {
+            width: 100%;
+      padding: 15px;
+      border: 1px solid #414040;
+      margin-bottom: 15px;
+      box-sizing:border-box;
+      }
+    .UpdateMemberForm input[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      background-color: #38406d;
+      border: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="UpdateMemberForm">
+      <h1>Update Member ID:<%=SelectedMember.member_id;%>  </h1>
+      <form action="/admin/member/edit/<%=SelectedMember.member_id;%>"  method = "POST">
+        
+        
+                <!-- <label for="name">Original Value: </label><br> -->
+                <!-- <input type="text" id="name" name="name" placeholder="Name" value="<%=SelectedMember.member_name; %>" required >  -->
+                <!-- <input type="text" id="member_id" name="member_id"  placeholder="member_id" value="<%=SelectedMember.member_id; %>" required> -->
+                <input type = "text" id="PhoneNumber" name="PhoneNumber" placeholder = "PhoneNumber" value="<%=SelectedMember.member_phone;%>"required>
+                <select  name = "dept_name" required>
+                  <option value = "PR Team" selected>PR Team </option>
+                  <option value = "GR Team">GR Team</option>
+                  <option value = "Design">Design</option>
+                  <option value = "Food">Food</option>
+                  <option value = "EM Team">EM Team</option>
+                  <option value = "Admins">Admins</option>
+               </select>
+
+                <!-- <input type="text" id = "competitionID" name="competitionID" placeholder="Competition ID" value="<%=SelectedMember.competition_id; %>" required> -->
+                <select name = "comp_name" required>
+                  <%
+                  if(CompetitionData.length!=0){
+                  var i=1;
+                  CompetitionData.forEach(function(data){
+                  %>
+                  <tr>
+                  <td><%=data.comp_name %></td>
+                  <option>
+                    <%= data.comp_name %>
+                 </option>
+                </tr>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <% } %>
+                 </select>
+                <!-- <label for="isAdmin"> Admin:</label> -->
+                <!-- <input type="checkbox" id="isAdmin" name="isAdmin" value="admin" value="1" required> -->
+                
+                <input type="submit"  value = "Update">
+                
+      </form>
+    </div>
+  </body>
+  
+  

@@ -1,0 +1,94 @@
+
+<head>
+  <meta charset="utf-8">
+  <title>Add Member Info</title>
+  <style>
+  .UpdateMemberForm {
+    width: 300px;
+    margin: 0 auto;
+    font-family: Tahoma, Geneva, sans-serif;
+  }
+  .UpdateMemberForm h1 {
+    text-align: center;
+    color: #4d4d4d;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+  }
+    .UpdateMemberForm input[type="text"]
+    {
+          width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+    }
+    .UpdateMemberForm input[name="dropdown"]
+    {
+          width: 100%;
+    padding: 15px;
+    border: 1px solid #414040;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+    }
+
+
+
+  .UpdateMemberForm input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #38406d;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  </style>
+</head>
+<body>
+  <div class="UpdateMemberForm">
+    <h1>Add new member</h1>
+    <form action="/admin/member/add/" method = "POST">
+      
+      
+              <input type="text" id="name" name="name" placeholder="Name" required > 
+
+              <input type="text" id="id" name="id"  placeholder="Fast ID" maxlength="8"  required>
+              <input type="text" id="pheonName" name="pheonName"  placeholder="Phone Number"  required>
+              
+              
+
+              <select  name = "dept_name" required>
+                <option value = "PR Team" selected>PR Team </option>
+                <option value = "GR Team">GR Team</option>
+                <option value = "Design">Design</option>
+                <option value = "Food">Food</option>
+                <option value = "EM Team">EM Team</option>
+                <option value = "Admins">Admins</option>
+                
+             </select>
+             
+             <select name = "comp_name" required>
+              <%
+              if(CompetitionData.length!=0){
+              var i=1;
+              CompetitionData.forEach(function(data){
+              %>
+              <tr>
+              <td><%=data.comp_name %></td>
+              <option>
+                <%= data.comp_name %>
+             </option>
+            </tr>
+              <%  i++; }) %>
+              <% } else{ %>
+              <% } %>
+             </select>
+             <br>
+            <br>
+              <input type="submit"  value = "Add+">
+              
+    </form>
+  </div>
+</body>
+

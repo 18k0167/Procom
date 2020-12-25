@@ -1,0 +1,136 @@
+
+
+	<head>
+		<meta charset="utf-8">
+		<title>Register Team</title>
+		<style>
+		.RegisterTeam {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.RegisterTeam h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+        .RegisterTeam input[type="text"]
+        {
+            width: 100%;
+			padding: 15px;
+			border: 1px solid #414040;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+        }
+		.RegisterTeam input[type="name"]
+        {
+            width: 100%;
+			padding: 15px;
+			border: 1px solid #414040;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+        }
+		.RegisterTeam button[id="addField"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #38406d;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		
+		.RegisterTeam input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #38406d;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		
+		</style>
+	</head>
+	
+    <body>
+		<div class="RegisterTeam">
+			<h1>Register Team</h1>
+		<input type="text" id="member" name="member" placeholder="Members from Minimum(<%=ComData.MinParticipants ; %>) to Maximum(<%=ComData.MaxParticipants ; %>)" required>
+		<button id="addField" onclick="addFields()">Submit</button><br>
+		<br>
+		<form id="form" action="/participant/registerTeam/<%=ComData.c_id ; %>" name="teamRegisterForm" method="POST" >
+			
+
+            
+        </form>
+	</div>
+		
+	</body>
+
+	<script>
+		function addFields(){
+            // Number of inputs to create
+			// Container <div> where dynamic content will be placed
+				var number = document.getElementById("member").value;
+				
+				if(number < "<%=ComData.MinParticipants %>" || number > "<%=ComData.MaxParticipants %>")
+					return;
+			var container = document.getElementById("form");
+			// Clear previous contents of the container
+            while (container.hasChildNodes()) {
+				
+				if(container.getElementById != ""  )
+                	container.removeChild(container.lastChild);
+			}
+
+
+			var input = document.createElement("input");
+                input.type = "name";
+				input.name = "leaderName";
+				input.required = true;
+				input.placeholder = "Leader Name member("+(1) +")";
+				container.appendChild(input);
+			
+			input = document.createElement("input");
+			input.type = "name";
+			input.name = "teamName";
+			input.required = true;
+			input.placeholder = "Team Name";
+			container.appendChild(input);
+
+
+            for (i=0;i<number-1;i++){
+                // Append a node with a random text
+                // Create an <input> element, set its type and name attributes
+                input = document.createElement("input");
+                input.type = "text";
+				input.name = "name member" + i;
+				input.placeholder = "name member("+(i+2) + ")";
+				input.required = true;
+                container.appendChild(input);
+				// Append a line break 
+				input = document.createElement("input");
+                input.type = "text";
+				input.name = "phone member" + i;
+				input.placeholder = "phone number member("+(i+2) + ")";
+				input.required = true;
+                container.appendChild(input);
+				container.appendChild(document.createElement("br"));
+			}
+		
+	
+			input = document.createElement("input");
+			input.type = "submit";
+			input.name = "button";
+			input.value = "Register"
+			container.appendChild(input);
+			container.appendChild(document.createElement("br"));
+			
+			
+        }
+		
+	</script>

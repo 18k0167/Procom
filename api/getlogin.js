@@ -12,6 +12,9 @@ app.set('view engine', 'ejs')
 app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
 const getlogin = (req,res)=>{
+    if(req.session.participant)
+    res.redirect('/participant')
+    else
     res.render('login')
 }
 module.exports = getlogin

@@ -11,12 +11,15 @@ app.set('view engine', 'ejs')
 app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const getmemberslogin = (req,res)=>{
-    if(req.session.admin)
-    res.redirect('/admin')
-    else if(req.session.member)
-    res.redirect('/member')
+const selectcompetition = (req,res)=>{
+    if(req.session.participant)
+    {
+        var sql = "select *from competitions"
+        db.query(sql,(err,result)=>{
+            res.render('selectcompetition',{CompetitionData:result})
+        })
+    }
     else
-    res.render('memberslogin')
+    res.redirect('/login')
 }
-module.exports = getmemberslogin
+module.exports = selectcompetition

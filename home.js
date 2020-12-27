@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const jade = require('jade')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const db = require('../connection/database')
 const getlogin = require('../api/getlogin')
 const login = require('../api/login')
@@ -23,16 +25,35 @@ const getaddmember = require('../api/getaddmember')
 const addmember = require('../api/addmember')
 const geteditmember = require('../api/geteditmember')
 const editmember = require('../api/editmember')
+const deletemember = require('../api/deletemember')
+const participantpage = require('../api/participantoptions')
+const selectcompetition = require('../api/selectcompetition')
+const getregisterteam = require('../api/getregisterteam')
+const registerteam = require('../api/registerteam')
 var bodyParser = require('body-parser');
 const emailverifier = require('email-verifier')
 var router = express.Router();
 const app = express()
-// app.use('/showparticipants',show);
 const locat = path.join(__dirname,'../public')
 // const viewspath = path.join(__dirname,'../Templating')
 app.set('view engine', 'ejs')
 app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+    name: "sid",
+    secret: "thiskey12345678",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 3600000,
+    //   httpOnly: true,
+    //   maxAge: 90000000, // 7 days
+    //   sameSite: true
+    }
+  })
+);
 app.use('/', router);
 // app.set('view engine', 'hbs')
 // app.set('views', viewspath)
@@ -62,8 +83,8 @@ router.get('/login',getlogin)
 // })
 router.post('/login',login)
 //router.get('/memberslogin',getmemberslogin)
-router.get('/memberslogin',getmemberslogin)
-router.post('/memberslogin',memberlogin)
+router.get('/membersLogin',getmemberslogin)
+router.post('/membersLogin',memberlogin)
 router.get('/register',getregister)
 // app.post('/register',(req,res)=>{
 //     var sql = "insert into participants values (?,?,?,?,null)"
@@ -105,12 +126,11 @@ router.get('/admin/member/add',getaddmember)
 router.post('/admin/member/add',addmember)
 router.get('/admin/member/edit/:id',geteditmember)
 router.post('/admin/member/edit/:id',editmember)
-router.get('/participant',(req,res)=>{
-    res.render('participant')
-})
-router.get('/part',(req,res)=>{
-    res.render('registerteam')
-})
+router.get('/admin/member/delete/:id',deletemember)
+router.get('/participant',participantpage)
+router.get('/participant/registerTeam',selectcompetition)
+router.get('/participant/registerTeam/:id',getregisterteam)
+router.post('/participant/registerTeam/:id',registerteam)    
 // router.post('/admin/competition/delete/:id',deletecompetition)
 // app.get
     // console.log(req.body.email) 

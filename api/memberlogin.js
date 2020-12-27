@@ -11,6 +11,11 @@ app.set('view engine', 'ejs')
 app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
 const memberslogin = (req,res)=>{
+    if(req.session.admin)
+    res.redirect('/admin')
+    else if(req.session.member)
+    res.redirect('/')
+    else{
     var sql = "select *from members M,departments D where M.member_id = ? and M.dept_id = D.Department_Id and D.Department_pass = ?"
     db.query(sql,[
     req.body.member_id,
@@ -20,10 +25,21 @@ const memberslogin = (req,res)=>{
     if(result.length>0)
     {
     if(result[0].Department_name == 'Admins')
-    res.redirect('/about')
+    {
+    req.session.admin = result[0].member_id
+    console.log(req.session.admin)
+    res.redirect('/admin')
+    }
     else
-    res.redirect('/')
+    {
+        req.session.member = result[0].member_id
+        console.log(req.session.member)
+        res.redirect('/')
+    }
 }
-    })
+    else
+    res.redirect('/membersLogin')
+})
+}
 }
 module.exports = memberslogin

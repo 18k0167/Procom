@@ -10,13 +10,13 @@ const locat = path.join(__dirname,'../public')
 app.set('view engine', 'ejs')
 app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const getmemberslogin = (req,res)=>{
-    if(req.session.admin)
-    res.redirect('/admin')
-    else if(req.session.member)
-    res.redirect('/member')
+const participantoptions = (req,res)=>{
+    console.log(req.session.participant)
+    if(req.session.participant)
+    res.render('participant',{title:'Reg',UserName:req.session.participant})
     else
-    res.render('memberslogin')
+    {
+        res.redirect('login')
+    }
 }
-module.exports = getmemberslogin
+module.exports = participantoptions

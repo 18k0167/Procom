@@ -12,6 +12,9 @@ app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const getregister = (req,res)=>{
+    if(req.session.participant)
+    res.redirect('/participant')
+    else
     res.render('register')
 }
 module.exports = getregister

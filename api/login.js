@@ -12,6 +12,10 @@ app.use(express.static(locat))
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const login = (req,res)=>{
+    console.log(req.session.participant)
+    if(req.session.participant)
+    res.redirect('/participant')
+    else{
     var check =  false
     var sql = "select *from participants where Part_Email = ?"
     db.query(sql,[
@@ -34,10 +38,15 @@ const login = (req,res)=>{
                     res.redirect('/login')
                 })
         if(check)
-            res.redirect('/')
+        {
+            req.session.participant = result[0].Part_Id
+            console.log(req.session.participant)
+            res.redirect('/participant')
+        }
         }
         else
             res.redirect('/login')
     })
+}
 }
 module.exports = login

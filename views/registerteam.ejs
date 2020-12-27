@@ -59,10 +59,10 @@
     <body>
 		<div class="RegisterTeam">
 			<h1>Register Team</h1>
-		<input type="text" id="member" name="member" placeholder="Members from Minimum(<%=ComData.MinParticipants ; %>) to Maximum(<%=ComData.MaxParticipants ; %>)" required>
+		<input type="text" id="member" name="member" placeholder="Members from Minimum(<%=ComData.min_part ; %>) to Maximum(<%=ComData.max_part ; %>)" required>
 		<button id="addField" onclick="addFields()">Submit</button><br>
 		<br>
-		<form id="form" action="/participant/registerTeam/<%=ComData.c_id ; %>" name="teamRegisterForm" method="POST" >
+		<form id="form" action="/participant/registerTeam/<%=ComData.comp_id ; %>" name="teamRegisterForm" method="POST" >
 			
 
             
@@ -77,7 +77,7 @@
 			// Container <div> where dynamic content will be placed
 				var number = document.getElementById("member").value;
 				
-				if(number < "<%=ComData.MinParticipants %>" || number > "<%=ComData.MaxParticipants %>")
+				if(number < "<%=ComData.min_part %>" || number > "<%=ComData.max_part %>")
 					return;
 			var container = document.getElementById("form");
 			// Clear previous contents of the container
@@ -86,14 +86,6 @@
 				if(container.getElementById != ""  )
                 	container.removeChild(container.lastChild);
 			}
-
-
-			var input = document.createElement("input");
-                input.type = "name";
-				input.name = "leaderName";
-				input.required = true;
-				input.placeholder = "Leader Name member("+(1) +")";
-				container.appendChild(input);
 			
 			input = document.createElement("input");
 			input.type = "name";
@@ -108,15 +100,15 @@
                 // Create an <input> element, set its type and name attributes
                 input = document.createElement("input");
                 input.type = "text";
-				input.name = "name member" + i;
-				input.placeholder = "name member("+(i+2) + ")";
+				input.name = "namemember";
+				input.placeholder = "namemember("+(i+2) + ")";
 				input.required = true;
                 container.appendChild(input);
 				// Append a line break 
 				input = document.createElement("input");
                 input.type = "text";
-				input.name = "phone member" + i;
-				input.placeholder = "phone number member("+(i+2) + ")";
+				input.name = "phonemember";
+				input.placeholder = "phonenumbermember("+(i+2) + ")";
 				input.required = true;
                 container.appendChild(input);
 				container.appendChild(document.createElement("br"));
